@@ -41,17 +41,21 @@
 
 /* Private variables ---------------------------------------------------------*/
 DAC_HandleTypeDef hdac1;
+DMA_HandleTypeDef hdma_dac1_ch1;
 
 TIM_HandleTypeDef htim7;
 
 /* USER CODE BEGIN PV */
-float lut[] = {0.0, 0.3826834323650898, 0.7071067811865476, 0.9238795325112867, 1.0, 0.9238795325112867, 0.7071067811865476, 0.3826834323650899, 1.2246467991473532e-16, -0.38268343236508967, -0.7071067811865475, -0.9238795325112865, -1.0, -0.9238795325112866, -0.7071067811865477, -0.3826834323650904};
-float lut_size = sizeof(lut);
+//float lut[16] = {0.0, 0.3826834323650898, 0.7071067811865476, 0.9238795325112867, 1.0, 0.9238795325112867, 0.7071067811865476, 0.3826834323650899, 1.2246467991473532e-16, -0.38268343236508967, -0.7071067811865475, -0.9238795325112865, -1.0, -0.9238795325112866, -0.7071067811865477, -0.3826834323650904};
+float lut[16] = {0.0, 0.3827, 0.7071, 0.9239, 1.0, 0.9239, 0.7071, 0.3827, -0.0, -0.3827, -0.7071, -0.9239, -1.0, -0.9239, -0.7071, -0.3827};
+
+uint32_t lut_size = sizeof(lut);
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
 static void MX_DAC1_Init(void);
 static void MX_TIM7_Init(void);
 /* USER CODE BEGIN PFP */
@@ -91,10 +95,11 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_DAC1_Init();
   MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
-  HAL_DAC_Start(&hdac1, DAC1_CHANNEL_1);
+  HAL_DAC_Start_DMA(&hdac1, DAC1_CHANNEL_1,(uint32_t*)lut,lut_size,DAC_ALIGN_12B_R);
   HAL_TIM_Base_Start_IT(&htim7);
   /* USER CODE END 2 */
 
@@ -231,6 +236,23 @@ static void MX_TIM7_Init(void)
   /* USER CODE BEGIN TIM7_Init 2 */
 
   /* USER CODE END TIM7_Init 2 */
+
+}
+
+/**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+
+  /* DMA controller clock enable */
+  __HAL_RCC_DMAMUX1_CLK_ENABLE();
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Channel1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
 
 }
 

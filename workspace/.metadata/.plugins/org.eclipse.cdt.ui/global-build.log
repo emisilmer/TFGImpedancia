@@ -1,13 +1,162 @@
-11:38:50 **** Incremental Build of configuration Debug for project PruebaTFG ****
-make -j12 all 
+13:36:02 **** Incremental Build of configuration Debug for project PruebaTFG ****
+make -j16 all 
 arm-none-eabi-gcc "../Core/Src/stm32g4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_it.d" -MT"Core/Src/stm32g4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_it.o"
-arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\salva\Desktop\TFG\STM\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+../Core/Src/stm32g4xx_it.c: In function 'TIM7_DAC_IRQHandler':
+../Core/Src/stm32g4xx_it.c:233:9: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  233 |         printf(HAL_DAC_GetValue(&hdac1, DAC1_CHANNEL_1));
+      |         ^~~~~~
+../Core/Src/stm32g4xx_it.c:23:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   22 | #include "stm32g4xx_it.h"
+  +++ |+#include <stdio.h>
+   23 | /* Private includes ----------------------------------------------------------*/
+../Core/Src/stm32g4xx_it.c:233:9: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+  233 |         printf(HAL_DAC_GetValue(&hdac1, DAC1_CHANNEL_1));
+      |         ^~~~~~
+../Core/Src/stm32g4xx_it.c:233:9: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/stm32g4xx_it.c:233:16: warning: passing argument 1 of 'printf' makes pointer from integer without a cast [-Wint-conversion]
+  233 |         printf(HAL_DAC_GetValue(&hdac1, DAC1_CHANNEL_1));
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                |
+      |                uint32_t {aka long unsigned int}
+../Core/Src/stm32g4xx_it.c:233:16: note: expected 'const char *' but argument is of type 'uint32_t' {aka 'long unsigned int'}
+arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: PruebaTFG.elf
  
 arm-none-eabi-size   PruebaTFG.elf 
 arm-none-eabi-objdump -h -S  PruebaTFG.elf  > "PruebaTFG.list"
    text	   data	    bss	    dec	    hex	filename
-   9444	     88	   1672	  11204	   2bc4	PruebaTFG.elf
+  15704	    180	   2100	  17984	   4640	PruebaTFG.elf
+Finished building: default.size.stdout
+ 
+Finished building: PruebaTFG.list
+ 
+13:36:19 **** Incremental Build of configuration Debug for project PruebaTFG ****
+make -j16 all 
+arm-none-eabi-size   PruebaTFG.elf 
+   text	   data	    bss	    dec	    hex	filename
+  15704	    180	   2100	  17984	   4640	PruebaTFG.elf
+Finished building: default.size.stdout
+ 
+13:37:07 **** Incremental Build of configuration Debug for project PruebaTFG ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/stm32g4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_it.d" -MT"Core/Src/stm32g4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_it.o"
+../Core/Src/stm32g4xx_it.c: In function 'TIM7_DAC_IRQHandler':
+../Core/Src/stm32g4xx_it.c:234:15: warning: unused variable 'value' [-Wunused-variable]
+  234 |         float value = HAL_DAC_GetValue(&hdac1, DAC1_CHANNEL_1);
+      |               ^~~~~
+arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: PruebaTFG.elf
+ 
+arm-none-eabi-size   PruebaTFG.elf 
+arm-none-eabi-objdump -h -S  PruebaTFG.elf  > "PruebaTFG.list"
+   text	   data	    bss	    dec	    hex	filename
+  11564	     88	   1768	  13420	   346c	PruebaTFG.elf
+Finished building: default.size.stdout
+ 
+Finished building: PruebaTFG.list
+ 
+13:39:54 **** Incremental Build of configuration Debug for project PruebaTFG ****
+make -j16 all 
+arm-none-eabi-size   PruebaTFG.elf 
+   text	   data	    bss	    dec	    hex	filename
+  11564	     88	   1768	  13420	   346c	PruebaTFG.elf
+Finished building: default.size.stdout
+ 
+13:40:48 **** Incremental Build of configuration Debug for project PruebaTFG ****
+make -j16 all 
+arm-none-eabi-size   PruebaTFG.elf 
+   text	   data	    bss	    dec	    hex	filename
+  11564	     88	   1768	  13420	   346c	PruebaTFG.elf
+Finished building: default.size.stdout
+ 
+13:41:49 **** Incremental Build of configuration Debug for project PruebaTFG ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: PruebaTFG.elf
+ 
+arm-none-eabi-size   PruebaTFG.elf 
+arm-none-eabi-objdump -h -S  PruebaTFG.elf  > "PruebaTFG.list"
+   text	   data	    bss	    dec	    hex	filename
+  11564	     88	   1768	  13420	   346c	PruebaTFG.elf
+Finished building: default.size.stdout
+ 
+Finished building: PruebaTFG.list
+ 
+13:42:25 **** Incremental Build of configuration Debug for project PruebaTFG ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/stm32g4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_it.d" -MT"Core/Src/stm32g4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_it.o"
+../Core/Src/stm32g4xx_it.c: In function 'TIM7_DAC_IRQHandler':
+../Core/Src/stm32g4xx_it.c:234:15: warning: unused variable 'value' [-Wunused-variable]
+  234 |         float value = HAL_DAC_GetValue(&hdac1, DAC1_CHANNEL_1);
+      |               ^~~~~
+../Core/Src/stm32g4xx_it.c:224:25: warning: unused variable 'lut_size' [-Wunused-variable]
+  224 |         extern uint32_t lut_size;
+      |                         ^~~~~~~~
+arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: PruebaTFG.elf
+ 
+arm-none-eabi-size   PruebaTFG.elf 
+arm-none-eabi-objdump -h -S  PruebaTFG.elf  > "PruebaTFG.list"
+   text	   data	    bss	    dec	    hex	filename
+  11556	     88	   1768	  13412	   3464	PruebaTFG.elf
+Finished building: default.size.stdout
+ 
+Finished building: PruebaTFG.list
+ 
+13:43:54 **** Incremental Build of configuration Debug for project PruebaTFG ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32g4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_it.d" -MT"Core/Src/stm32g4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_it.o"
+../Core/Src/stm32g4xx_it.c: In function 'TIM7_DAC_IRQHandler':
+../Core/Src/stm32g4xx_it.c:234:16: warning: unused variable 'value' [-Wunused-variable]
+  234 |         double value = HAL_DAC_GetValue(&hdac1, DAC1_CHANNEL_1);
+      |                ^~~~~
+../Core/Src/stm32g4xx_it.c:224:25: warning: unused variable 'lut_size' [-Wunused-variable]
+  224 |         extern uint32_t lut_size;
+      |                         ^~~~~~~~
+arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: PruebaTFG.elf
+ 
+arm-none-eabi-size   PruebaTFG.elf 
+arm-none-eabi-objdump -h -S  PruebaTFG.elf  > "PruebaTFG.list"
+   text	   data	    bss	    dec	    hex	filename
+  12516	    152	   1768	  14436	   3864	PruebaTFG.elf
+Finished building: default.size.stdout
+ 
+Finished building: PruebaTFG.list
+ 
+13:49:23 **** Incremental Build of configuration Debug for project PruebaTFG ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: PruebaTFG.elf
+ 
+arm-none-eabi-size   PruebaTFG.elf 
+arm-none-eabi-objdump -h -S  PruebaTFG.elf  > "PruebaTFG.list"
+   text	   data	    bss	    dec	    hex	filename
+  12516	     88	   1768	  14372	   3824	PruebaTFG.elf
+Finished building: default.size.stdout
+ 
+Finished building: PruebaTFG.list
+ 
+13:50:16 **** Incremental Build of configuration Debug for project PruebaTFG ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/stm32g4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_it.d" -MT"Core/Src/stm32g4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_it.o"
+../Core/Src/stm32g4xx_it.c: In function 'TIM7_DAC_IRQHandler':
+../Core/Src/stm32g4xx_it.c:234:15: warning: unused variable 'value' [-Wunused-variable]
+  234 |         float value = HAL_DAC_GetValue(&hdac1, DAC1_CHANNEL_1);
+      |               ^~~~~
+../Core/Src/stm32g4xx_it.c:224:25: warning: unused variable 'lut_size' [-Wunused-variable]
+  224 |         extern uint32_t lut_size;
+      |                         ^~~~~~~~
+arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: PruebaTFG.elf
+ 
+arm-none-eabi-size   PruebaTFG.elf 
+arm-none-eabi-objdump -h -S  PruebaTFG.elf  > "PruebaTFG.list"
+   text	   data	    bss	    dec	    hex	filename
+  11556	     88	   1768	  13412	   3464	PruebaTFG.elf
 Finished building: default.size.stdout
  
 Finished building: PruebaTFG.list

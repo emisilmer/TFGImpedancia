@@ -55,6 +55,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
+extern DMA_HandleTypeDef hdma_dac1_ch1;
 extern TIM_HandleTypeDef htim7;
 /* USER CODE BEGIN EV */
 
@@ -199,6 +200,20 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
+  * @brief This function handles DMA1 channel1 global interrupt.
+  */
+void DMA1_Channel1_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA1_Channel1_IRQn 0 */
+
+  /* USER CODE END DMA1_Channel1_IRQn 0 */
+  HAL_DMA_IRQHandler(&hdma_dac1_ch1);
+  /* USER CODE BEGIN DMA1_Channel1_IRQn 1 */
+
+  /* USER CODE END DMA1_Channel1_IRQn 1 */
+}
+
+/**
   * @brief This function handles TIM7 global interrupt, DAC2 and DAC4 channel underrun error interrupts.
   */
 void TIM7_DAC_IRQHandler(void)
@@ -206,14 +221,17 @@ void TIM7_DAC_IRQHandler(void)
   /* USER CODE BEGIN TIM7_DAC_IRQn 0 */
 	extern DAC_HandleTypeDef hdac1;
 	extern float lut[];
-	extern float lut_size;
-	static int indice = 0;
+	extern uint32_t lut_size;
+	static uint32_t indice = 0;
 
+	uint32_t valorEntero = ((lut[indice] + 1.0) * 2047.5);
 	HAL_DAC_SetValue(&hdac1,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,lut[indice]);
 	indice++;
-	if(indice >= lut_size){
+	if(indice >= 16){
 			indice = 0;
 		}
+
+	float value = HAL_DAC_GetValue(&hdac1, DAC1_CHANNEL_1);
 
   /* USER CODE END TIM7_DAC_IRQn 0 */
   HAL_TIM_IRQHandler(&htim7);
