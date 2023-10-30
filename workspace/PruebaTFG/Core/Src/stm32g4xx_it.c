@@ -221,17 +221,14 @@ void TIM7_DAC_IRQHandler(void)
   /* USER CODE BEGIN TIM7_DAC_IRQn 0 */
 	extern DAC_HandleTypeDef hdac1;
 	extern float lut[];
-	extern uint32_t lut_size;
 	static uint32_t indice = 0;
 
 	uint32_t valorEntero = ((lut[indice] + 1.0) * 2047.5);
-	HAL_DAC_SetValue(&hdac1,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,lut[indice]);
+	HAL_DAC_SetValue(&hdac1,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,valorEntero);
 	indice++;
 	if(indice >= 16){
 			indice = 0;
 		}
-
-	float value = HAL_DAC_GetValue(&hdac1, DAC1_CHANNEL_1);
 
   /* USER CODE END TIM7_DAC_IRQn 0 */
   HAL_TIM_IRQHandler(&htim7);

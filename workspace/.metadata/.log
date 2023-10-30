@@ -410,3 +410,30 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\Emilio\Deskto
 
 !ENTRY org.eclipse.cdt.core 1 0 2023-10-19 13:00:06.445
 !MESSAGE Indexed 'PruebaTFG' (23 sources, 117 headers) in 3.2 sec: 12,647 declarations; 68,077 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0.21%)
+!SESSION 2023-10-30 11:32:30.367 -----------------------------------------------
+eclipse.buildId=Version 1.13.2
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2023-10-30 11:32:59.058
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-10-30 11:32:59.070
+!MESSAGE Log4j2 initialized with config file C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-10-30 11:33:10.382
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2023-10-30 11:51:55.648
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 3 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2023-10-30 11:51:55.648
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2023-10-30 11:51:55.649
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 3 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2023-10-30 11:51:55.650
+!MESSAGE Existing sessions are:

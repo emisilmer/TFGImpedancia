@@ -1,24 +1,17 @@
-13:50:16 **** Incremental Build of configuration Debug for project PruebaTFG ****
+11:51:45 **** Incremental Build of configuration Debug for project PruebaTFG ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/stm32g4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_it.d" -MT"Core/Src/stm32g4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_it.o"
-../Core/Src/stm32g4xx_it.c: In function 'TIM7_DAC_IRQHandler':
-../Core/Src/stm32g4xx_it.c:234:15: warning: unused variable 'value' [-Wunused-variable]
-  234 |         float value = HAL_DAC_GetValue(&hdac1, DAC1_CHANNEL_1);
-      |               ^~~~~
-../Core/Src/stm32g4xx_it.c:224:25: warning: unused variable 'lut_size' [-Wunused-variable]
-  224 |         extern uint32_t lut_size;
-      |                         ^~~~~~~~
 arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: PruebaTFG.elf
  
 arm-none-eabi-size   PruebaTFG.elf 
 arm-none-eabi-objdump -h -S  PruebaTFG.elf  > "PruebaTFG.list"
    text	   data	    bss	    dec	    hex	filename
-  11556	     88	   1768	  13412	   3464	PruebaTFG.elf
+  13104	     88	   1768	  14960	   3a70	PruebaTFG.elf
 Finished building: default.size.stdout
  
 Finished building: PruebaTFG.list
  
 
-13:50:17 Build Finished. 0 errors, 2 warnings. (took 649ms)
+11:51:47 Build Finished. 0 errors, 0 warnings. (took 1s.414ms)
 
