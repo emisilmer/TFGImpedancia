@@ -437,3 +437,40 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2023-10-30 11:51:55.650
 !MESSAGE Existing sessions are:
+!SESSION 2023-10-30 12:00:44.072 -----------------------------------------------
+eclipse.buildId=Version 1.13.2
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2023-10-30 12:01:16.298
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-10-30 12:01:16.311
+!MESSAGE Log4j2 initialized with config file C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-10-30 12:01:26.668
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2023-10-31 16:12:00.422 -----------------------------------------------
+eclipse.buildId=Version 1.13.2
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\PruebaTFG\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\PruebaTFG\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2023-10-31 16:12:22.005
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-10-31 16:12:22.005
+!MESSAGE Log4j2 initialized with config file C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-10-31 16:12:29.768
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-10-31 16:12:34.992
+!MESSAGE Indexed 'PruebaTFG' (26 sources, 120 headers) in 4.82 sec: 13,656 declarations; 80,806 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0.18%)
+
+!ENTRY org.eclipse.core.jobs 2 2 2023-10-31 16:12:38.662
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.ui.internal.Workbench$39
