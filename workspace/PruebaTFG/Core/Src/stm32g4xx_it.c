@@ -55,10 +55,8 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern DAC_HandleTypeDef hdac1;
-extern TIM_HandleTypeDef htim2;
+extern DMA_HandleTypeDef hdma_dac1_ch1;
 extern TIM_HandleTypeDef htim3;
-extern TIM_HandleTypeDef htim6;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -202,17 +200,17 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles TIM2 global interrupt.
+  * @brief This function handles DMA1 channel1 global interrupt.
   */
-void TIM2_IRQHandler(void)
+void DMA1_Channel1_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM2_IRQn 0 */
+  /* USER CODE BEGIN DMA1_Channel1_IRQn 0 */
 
-  /* USER CODE END TIM2_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim2);
-  /* USER CODE BEGIN TIM2_IRQn 1 */
+  /* USER CODE END DMA1_Channel1_IRQn 0 */
+  HAL_DMA_IRQHandler(&hdma_dac1_ch1);
+  /* USER CODE BEGIN DMA1_Channel1_IRQn 1 */
 
-  /* USER CODE END TIM2_IRQn 1 */
+  /* USER CODE END DMA1_Channel1_IRQn 1 */
 }
 
 /**
@@ -221,36 +219,22 @@ void TIM2_IRQHandler(void)
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
+	extern DAC_HandleTypeDef hdac1;
+	extern float lut[];
+	extern uint32_t lut_size;
+	static uint32_t indice = 0;
 
+	uint32_t valorEntero = ((lut[indice] + 1.0) * 2047.5);
+	HAL_DAC_SetValue(&hdac1,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,valorEntero);
+	indice++;
+	if(indice >= 16){
+			indice = 0;
+		}
   /* USER CODE END TIM3_IRQn 0 */
   HAL_TIM_IRQHandler(&htim3);
   /* USER CODE BEGIN TIM3_IRQn 1 */
 
   /* USER CODE END TIM3_IRQn 1 */
-}
-
-/**
-  * @brief This function handles TIM6 global interrupt, DAC1 and DAC3 channel underrun error interrupts.
-  */
-void TIM6_DAC_IRQHandler(void)
-{
-  /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
-	extern DAC_HandleTypeDef hdac1;
-	  	extern float lut[];
-	  	static uint32_t indice = 0;
-
-	  	uint32_t valorEntero = ((lut[indice] + 1.0) * 2047.5);
-	  	HAL_DAC_SetValue(&hdac1,DAC1_CHANNEL_1,DAC_ALIGN_12B_R,valorEntero);
-	  	indice++;
-	  	if(indice >= 16){
-	  			indice = 0;
-	  		}
-  /* USER CODE END TIM6_DAC_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim6);
-  HAL_DAC_IRQHandler(&hdac1);
-  /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
-
-  /* USER CODE END TIM6_DAC_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
