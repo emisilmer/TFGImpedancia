@@ -249,7 +249,48 @@ void HAL_DAC_MspDeInit(DAC_HandleTypeDef* hdac)
 void HAL_OPAMP_MspInit(OPAMP_HandleTypeDef* hopamp)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
-  if(hopamp->Instance==OPAMP6)
+  if(hopamp->Instance==OPAMP1)
+  {
+  /* USER CODE BEGIN OPAMP1_MspInit 0 */
+
+  /* USER CODE END OPAMP1_MspInit 0 */
+
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+    /**OPAMP1 GPIO Configuration
+    PA2     ------> OPAMP1_VOUT
+    PA3     ------> OPAMP1_VINM
+    PA7     ------> OPAMP1_VINP
+    */
+    GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_7;
+    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /* USER CODE BEGIN OPAMP1_MspInit 1 */
+
+  /* USER CODE END OPAMP1_MspInit 1 */
+  }
+  else if(hopamp->Instance==OPAMP3)
+  {
+  /* USER CODE BEGIN OPAMP3_MspInit 0 */
+
+  /* USER CODE END OPAMP3_MspInit 0 */
+
+    __HAL_RCC_GPIOB_CLK_ENABLE();
+    /**OPAMP3 GPIO Configuration
+    PB0     ------> OPAMP3_VINP
+    PB1     ------> OPAMP3_VOUT
+    */
+    GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1;
+    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /* USER CODE BEGIN OPAMP3_MspInit 1 */
+
+  /* USER CODE END OPAMP3_MspInit 1 */
+  }
+  else if(hopamp->Instance==OPAMP6)
   {
   /* USER CODE BEGIN OPAMP6_MspInit 0 */
 
@@ -279,7 +320,40 @@ void HAL_OPAMP_MspInit(OPAMP_HandleTypeDef* hopamp)
 */
 void HAL_OPAMP_MspDeInit(OPAMP_HandleTypeDef* hopamp)
 {
-  if(hopamp->Instance==OPAMP6)
+  if(hopamp->Instance==OPAMP1)
+  {
+  /* USER CODE BEGIN OPAMP1_MspDeInit 0 */
+
+  /* USER CODE END OPAMP1_MspDeInit 0 */
+
+    /**OPAMP1 GPIO Configuration
+    PA2     ------> OPAMP1_VOUT
+    PA3     ------> OPAMP1_VINM
+    PA7     ------> OPAMP1_VINP
+    */
+    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_7);
+
+  /* USER CODE BEGIN OPAMP1_MspDeInit 1 */
+
+  /* USER CODE END OPAMP1_MspDeInit 1 */
+  }
+  else if(hopamp->Instance==OPAMP3)
+  {
+  /* USER CODE BEGIN OPAMP3_MspDeInit 0 */
+
+  /* USER CODE END OPAMP3_MspDeInit 0 */
+
+    /**OPAMP3 GPIO Configuration
+    PB0     ------> OPAMP3_VINP
+    PB1     ------> OPAMP3_VOUT
+    */
+    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_0|GPIO_PIN_1);
+
+  /* USER CODE BEGIN OPAMP3_MspDeInit 1 */
+
+  /* USER CODE END OPAMP3_MspDeInit 1 */
+  }
+  else if(hopamp->Instance==OPAMP6)
   {
   /* USER CODE BEGIN OPAMP6_MspDeInit 0 */
 
