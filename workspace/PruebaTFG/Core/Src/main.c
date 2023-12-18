@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "math.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,21 +46,23 @@ DMA_HandleTypeDef hdma_adc1;
 DAC_HandleTypeDef hdac3;
 DMA_HandleTypeDef hdma_dac3_ch1;
 
-OPAMP_HandleTypeDef hopamp1;
 OPAMP_HandleTypeDef hopamp3;
+OPAMP_HandleTypeDef hopamp4;
 OPAMP_HandleTypeDef hopamp6;
 
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
-//float lut[16] = {0.0, 0.3826834323650898, 0.7071067811865476, 0.9238795325112867, 1.0, 0.9238795325112867, 0.7071067811865476, 0.3826834323650899, 1.2246467991473532e-16, -0.38268343236508967, -0.7071067811865475, -0.9238795325112865, -1.0, -0.9238795325112866, -0.7071067811865477, -0.3826834323650904};
-uint32_t lut[32] = {0x0800,0x0990,0x0b10,0x0c72,0x0da8,0x0ea7,0x0f64,0x0fd9,
-		0x0fff,0x9fd9,0x0f64,0x0ea7,0x0da8,0x0c72,0x0b10,0x0990,
-		0x0800,0x0670,0x04f0,0x038e,0x0258,0x0159,0x009c,0x0027,
-		0x0000,0x0027,0x009c,0x0159,0x0258,0x038e,0x04f0,0x0670};
+
+uint32_t AMP = 2048;
+uint32_t frequency = 80000000; //Frecuencia en Hz
+
+#define TAM_LUT 32
+#define TAM_BUFFER 4096
+uint32_t lut[TAM_LUT] = {0};
 uint32_t lut_size = sizeof(lut)/sizeof(lut[0]);
-uint16_t adc1_buffer[4096] = {0};
+uint16_t adc1_buffer[TAM_BUFFER] = {0};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -72,8 +74,8 @@ static void MX_DAC3_Init(void);
 static void MX_OPAMP6_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_TIM2_Init(void);
-static void MX_OPAMP1_Init(void);
 static void MX_OPAMP3_Init(void);
+static void MX_OPAMP4_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -117,14 +119,22 @@ int main(void)
   MX_OPAMP6_Init();
   MX_ADC1_Init();
   MX_TIM2_Init();
-  MX_OPAMP1_Init();
   MX_OPAMP3_Init();
+  MX_OPAMP4_Init();
   /* USER CODE BEGIN 2 */
+  //HAL_TIM_Base_DeInit(&htim2);
+  //HAL_TIM_Base_DeInit(&htim3);
+
+  ajustaTimers();
+  calculaLut();
+
+  //Timers
   HAL_TIM_Base_Start(&htim3);
   HAL_TIM_Base_Start(&htim2);
 
+  //OPAMS
   if(HAL_OK != HAL_OPAMP_Start(&hopamp6)) { Error_Handler();}
-  if(HAL_OK != HAL_OPAMP_Start(&hopamp1)) { Error_Handler();}
+  if(HAL_OK != HAL_OPAMP_Start(&hopamp4)) { Error_Handler();}
   if(HAL_OK != HAL_OPAMP_Start(&hopamp3)) { Error_Handler();}
 
   //DAC
@@ -313,39 +323,6 @@ static void MX_DAC3_Init(void)
 }
 
 /**
-  * @brief OPAMP1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_OPAMP1_Init(void)
-{
-
-  /* USER CODE BEGIN OPAMP1_Init 0 */
-
-  /* USER CODE END OPAMP1_Init 0 */
-
-  /* USER CODE BEGIN OPAMP1_Init 1 */
-
-  /* USER CODE END OPAMP1_Init 1 */
-  hopamp1.Instance = OPAMP1;
-  hopamp1.Init.PowerMode = OPAMP_POWERMODE_NORMALSPEED;
-  hopamp1.Init.Mode = OPAMP_STANDALONE_MODE;
-  hopamp1.Init.InvertingInput = OPAMP_INVERTINGINPUT_IO0;
-  hopamp1.Init.NonInvertingInput = OPAMP_NONINVERTINGINPUT_IO2;
-  hopamp1.Init.InternalOutput = DISABLE;
-  hopamp1.Init.TimerControlledMuxmode = OPAMP_TIMERCONTROLLEDMUXMODE_DISABLE;
-  hopamp1.Init.UserTrimming = OPAMP_TRIMMING_FACTORY;
-  if (HAL_OPAMP_Init(&hopamp1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN OPAMP1_Init 2 */
-
-  /* USER CODE END OPAMP1_Init 2 */
-
-}
-
-/**
   * @brief OPAMP3 Initialization Function
   * @param None
   * @retval None
@@ -361,7 +338,7 @@ static void MX_OPAMP3_Init(void)
 
   /* USER CODE END OPAMP3_Init 1 */
   hopamp3.Instance = OPAMP3;
-  hopamp3.Init.PowerMode = OPAMP_POWERMODE_NORMALSPEED;
+  hopamp3.Init.PowerMode = OPAMP_POWERMODE_HIGHSPEED;
   hopamp3.Init.Mode = OPAMP_FOLLOWER_MODE;
   hopamp3.Init.NonInvertingInput = OPAMP_NONINVERTINGINPUT_IO0;
   hopamp3.Init.InternalOutput = DISABLE;
@@ -374,6 +351,39 @@ static void MX_OPAMP3_Init(void)
   /* USER CODE BEGIN OPAMP3_Init 2 */
 
   /* USER CODE END OPAMP3_Init 2 */
+
+}
+
+/**
+  * @brief OPAMP4 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_OPAMP4_Init(void)
+{
+
+  /* USER CODE BEGIN OPAMP4_Init 0 */
+
+  /* USER CODE END OPAMP4_Init 0 */
+
+  /* USER CODE BEGIN OPAMP4_Init 1 */
+
+  /* USER CODE END OPAMP4_Init 1 */
+  hopamp4.Instance = OPAMP4;
+  hopamp4.Init.PowerMode = OPAMP_POWERMODE_HIGHSPEED;
+  hopamp4.Init.Mode = OPAMP_STANDALONE_MODE;
+  hopamp4.Init.InvertingInput = OPAMP_INVERTINGINPUT_IO0;
+  hopamp4.Init.NonInvertingInput = OPAMP_NONINVERTINGINPUT_IO0;
+  hopamp4.Init.InternalOutput = DISABLE;
+  hopamp4.Init.TimerControlledMuxmode = OPAMP_TIMERCONTROLLEDMUXMODE_DISABLE;
+  hopamp4.Init.UserTrimming = OPAMP_TRIMMING_FACTORY;
+  if (HAL_OPAMP_Init(&hopamp4) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN OPAMP4_Init 2 */
+
+  /* USER CODE END OPAMP4_Init 2 */
 
 }
 
@@ -549,7 +559,55 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void calculaLut(void){
+	float step = 2*M_PI/TAM_LUT;
+	uint32_t i = 0;
+	while(i < TAM_LUT){
+		uint32_t v = (uint32_t)((sin(i * step)*AMP/sin(2*M_PI/4))+AMP); //sin(TAM_LUT/4*step) = 0xFFF
+		lut[i] = v;
+		i++;
+	}
+}
 
+void ajustaTimers(void){
+	//TIM3 y TIM2 preescaler y periodo
+
+	//preescaler divide por un integer del 1 al 65536
+	//170Mhz clock
+	//Counter period reinicia el contador cuando llega al valor
+	//10hz-500khz
+	//f_deseada = f_timer/((ARR+1)x(PSC+1))
+	uint32_t f_timer = HAL_RCC_GetSysClockFreq();
+	uint32_t arr = 0;
+	uint32_t psc = 0;
+
+	arr = f_timer/frequency-1;
+	uint32_t best_arr = arr;
+	uint32_t best_psc = psc;
+	uint32_t best_calculated_f_value = (uint32_t) (f_timer/((arr+1)*(psc+1)));
+	uint32_t best_error = abs(frequency-best_calculated_f_value);
+
+	if(arr>65535 || best_error != 0){
+		for(uint32_t i = 1;i<65535;i++){
+
+			arr = (uint32_t) (f_timer/(i+1)/frequency-1);
+			uint32_t calculated_f_value = (uint32_t) (f_timer/((arr+1)*(i+1)));
+			uint32_t error = abs(frequency-calculated_f_value);
+
+			if(error < best_error && arr<65536){
+				best_psc = i;
+				best_arr = arr;
+				best_calculated_f_value = calculated_f_value;
+				best_error = error;
+			}
+		}
+	}
+/*	htim2.Init.Prescaler = best_psc;
+	htim3.Init.Prescaler = best_psc;
+
+	htim2.Init.AutoReloadPreload = best_arr;
+	htim3.Init.AutoReloadPreload = best_arr;*/
+}
 /* USER CODE END 4 */
 
 /**
@@ -563,6 +621,7 @@ void Error_Handler(void)
   __disable_irq();
   while (1)
   {
+	  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin,GPIO_PIN_SET);
   }
   /* USER CODE END Error_Handler_Debug */
 }
