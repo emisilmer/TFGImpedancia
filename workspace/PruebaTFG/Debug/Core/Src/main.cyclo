@@ -10,5 +10,5 @@
 ../Core/Src/main.c:515:13:MX_DMA_Init	1
 ../Core/Src/main.c:537:13:MX_GPIO_Init	1
 ../Core/Src/main.c:562:6:calculaLut	2
-../Core/Src/main.c:572:6:ajustaTimers	6
-../Core/Src/main.c:617:6:Error_Handler	1
+../Core/Src/main.c:572:6:ajustaTimers	23
+../Core/Src/main.c:674:6:Error_Handler	1

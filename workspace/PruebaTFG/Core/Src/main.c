@@ -56,7 +56,7 @@ TIM_HandleTypeDef htim3;
 /* USER CODE BEGIN PV */
 
 uint32_t AMP = 2048;
-uint32_t frequency = 80000000; //Frecuencia en Hz
+uint32_t frequency = 10; //Frecuencia en Hz
 
 #define TAM_LUT 32
 #define TAM_BUFFER 4096
@@ -122,8 +122,8 @@ int main(void)
   MX_OPAMP3_Init();
   MX_OPAMP4_Init();
   /* USER CODE BEGIN 2 */
-  //HAL_TIM_Base_DeInit(&htim2);
-  //HAL_TIM_Base_DeInit(&htim3);
+  HAL_TIM_Base_DeInit(&htim2);
+  HAL_TIM_Base_DeInit(&htim3);
 
   ajustaTimers();
   calculaLut();
@@ -576,37 +576,93 @@ void ajustaTimers(void){
 	//170Mhz clock
 	//Counter period reinicia el contador cuando llega al valor
 	//10hz-500khz
+	//10hz,50hz,100hz,200hz,500hz,700hz,1khz,10khz,50khz,100khz,200khz,500khz
 	//f_deseada = f_timer/((ARR+1)x(PSC+1))
-	uint32_t f_timer = HAL_RCC_GetSysClockFreq();
-	uint32_t arr = 0;
-	uint32_t psc = 0;
+	//uint32_t f_timer = HAL_RCC_GetSysClockFreq();
 
-	arr = f_timer/frequency-1;
-	uint32_t best_arr = arr;
-	uint32_t best_psc = psc;
-	uint32_t best_calculated_f_value = (uint32_t) (f_timer/((arr+1)*(psc+1)));
-	uint32_t best_error = abs(frequency-best_calculated_f_value);
+	//tim3 ARR 16 bits y tim2 ARR 32bits
+	switch(frequency){
+		case 10:
+			htim2.Init.Prescaler = 1;
+			htim3.Init.Prescaler = 339;
 
-	if(arr>65535 || best_error != 0){
-		for(uint32_t i = 1;i<65535;i++){
+			htim2.Init.AutoReloadPreload = 8499999;
+			htim3.Init.AutoReloadPreload = 49999;
+		case 50:
+			htim2.Init.Prescaler = 1;
+			htim3.Init.Prescaler = 849;
 
-			arr = (uint32_t) (f_timer/(i+1)/frequency-1);
-			uint32_t calculated_f_value = (uint32_t) (f_timer/((arr+1)*(i+1)));
-			uint32_t error = abs(frequency-calculated_f_value);
+			htim2.Init.AutoReloadPreload = 1699999;
+			htim3.Init.AutoReloadPreload = 3999;
 
-			if(error < best_error && arr<65536){
-				best_psc = i;
-				best_arr = arr;
-				best_calculated_f_value = calculated_f_value;
-				best_error = error;
-			}
-		}
+		case 100:
+			htim2.Init.Prescaler = 1;
+			htim3.Init.Prescaler = 399;
+
+			htim2.Init.AutoReloadPreload = 849999;
+			htim3.Init.AutoReloadPreload = 4249;
+		case 200:
+			htim2.Init.Prescaler = 1;
+			htim3.Init.Prescaler = 199;
+
+			htim2.Init.AutoReloadPreload = 424999;
+			htim3.Init.AutoReloadPreload = 4249;
+		case 500:
+			htim2.Init.Prescaler = 1;
+			htim3.Init.Prescaler = 79;
+
+			htim2.Init.AutoReloadPreload = 169999;
+			htim3.Init.AutoReloadPreload = 4249;
+		case 700://698.78
+			htim2.Init.Prescaler = 1;
+			htim3.Init.Prescaler = 3;
+
+			htim2.Init.AutoReloadPreload = 121428;
+			htim3.Init.AutoReloadPreload = 60819;
+		case 1000:
+			htim2.Init.Prescaler = 1;
+			htim3.Init.Prescaler = 39;
+
+			htim2.Init.AutoReloadPreload = 84999;
+			htim3.Init.AutoReloadPreload = 4249;
+		case 10000:
+			htim2.Init.Prescaler = 1;
+			htim3.Init.Prescaler = 1;
+
+			htim2.Init.AutoReloadPreload = 8499;
+			htim3.Init.AutoReloadPreload = 8499;
+		case 50000:
+			htim2.Init.Prescaler = 1;
+			htim3.Init.Prescaler = 1;
+
+			htim2.Init.AutoReloadPreload = 1699;
+			htim3.Init.AutoReloadPreload = 1699;
+		case 100000:
+			htim2.Init.Prescaler = 1;
+			htim3.Init.Prescaler = 1;
+
+			htim2.Init.AutoReloadPreload = 849;
+			htim3.Init.AutoReloadPreload = 849;
+		case 200000:
+			htim2.Init.Prescaler = 1;
+			htim3.Init.Prescaler = 1;
+
+			htim2.Init.AutoReloadPreload = 424;
+			htim3.Init.AutoReloadPreload = 424;
+		case 500000:
+			htim2.Init.Prescaler = 1;
+			htim3.Init.Prescaler = 1;
+
+			htim2.Init.AutoReloadPreload = 169;
+			htim3.Init.AutoReloadPreload = 169;
+		default:
+			htim2.Init.Prescaler = 1;
+			htim3.Init.Prescaler = 339;
+
+			htim2.Init.AutoReloadPreload = 8499999;
+			htim3.Init.AutoReloadPreload = 49999;
+
 	}
-/*	htim2.Init.Prescaler = best_psc;
-	htim3.Init.Prescaler = best_psc;
-
-	htim2.Init.AutoReloadPreload = best_arr;
-	htim3.Init.AutoReloadPreload = best_arr;*/
 }
 /* USER CODE END 4 */
 

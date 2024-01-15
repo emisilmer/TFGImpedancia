@@ -494,3 +494,22 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\Emilio\Deskto
 
 !ENTRY org.eclipse.cdt.core 1 0 2023-11-22 11:00:32.193
 !MESSAGE Indexed 'PruebaTFG' (23 sources, 117 headers) in 4.21 sec: 12,662 declarations; 68,228 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0.21%)
+!SESSION 2024-01-15 16:56:26.616 -----------------------------------------------
+eclipse.buildId=Version 1.13.2
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\PruebaTFG\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\PruebaTFG\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-01-15 16:56:35.935
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-01-15 16:56:35.937
+!MESSAGE Log4j2 initialized with config file C:\Users\Emilio\Desktop\Lilo\Clases\TFG\TFGGit\workspace\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-01-15 16:56:41.232
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-01-15 16:56:49.074
+!MESSAGE Indexed 'PruebaTFG' (28 sources, 123 headers) in 3,73 sec: 14.316 declarations; 84.038 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0,17 %)
