@@ -132,6 +132,9 @@ int main(void)
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK){Error_Handler();}
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK){Error_Handler();}
 
+  HAL_TIM_Base_Start(&htim2);
+  HAL_TIM_Base_Start(&htim3);
+
   //OPAMS
   if(HAL_OK != HAL_OPAMP_Start(&hopamp6)) { Error_Handler();}
   if(HAL_OK != HAL_OPAMP_Start(&hopamp4)) { Error_Handler();}
@@ -586,92 +589,92 @@ void ajustaTimers(void){
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 339;
 
-			htim2.Init.AutoReloadPreload = 8499999;
-			htim3.Init.AutoReloadPreload = 49999;
+			htim2.Init.Period = 8499999;
+			htim3.Init.Period = 49999;
 			break;
 		case 50:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 849;
 
-			htim2.Init.AutoReloadPreload = 1699999;
-			htim3.Init.AutoReloadPreload = 3999;
+			htim2.Init.Period = 1699999;
+			htim3.Init.Period = 3999;
 			break;
 		case 100:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 399;
 
-			htim2.Init.AutoReloadPreload = 849999;
-			htim3.Init.AutoReloadPreload = 4249;
+			htim2.Init.Period = 849999;
+			htim3.Init.Period = 4249;
 			break;
-		case 200:
+		case 200://5.7ms
 			htim2.Init.Prescaler = 1;
-			htim3.Init.Prescaler = 199;
+			htim3.Init.Prescaler = 199/30;
 
-			htim2.Init.AutoReloadPreload = 424999;
-			htim3.Init.AutoReloadPreload = 4249;
+			htim2.Init.Period = 424999;
+			htim3.Init.Period = 4249;
 			break;
-		case 500:
+		case 500: //Exacto
 			htim2.Init.Prescaler = 1;
-			htim3.Init.Prescaler = 79;
+			htim3.Init.Prescaler = 79/30;
 
-			htim2.Init.AutoReloadPreload = 169999;
-			htim3.Init.AutoReloadPreload = 4249;
+			htim2.Init.Period = 169999;
+			htim3.Init.Period = 4249;
 			break;
-		case 700://698.78
+		case 700://698.78  11.1ms != 1.4ms
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 3;
 
-			htim2.Init.AutoReloadPreload = 121428;
-			htim3.Init.AutoReloadPreload = 60819;
+			htim2.Init.Period = 121428;
+			htim3.Init.Period = 60819;
 			break;
-		case 1000:
+		case 1000://1.5ms
 			htim2.Init.Prescaler = 1;
-			htim3.Init.Prescaler = 39;
+			htim3.Init.Prescaler = 16;
 
-			htim2.Init.AutoReloadPreload = 84999;
-			htim3.Init.AutoReloadPreload = 4249;
+			htim2.Init.Period = 84999;
+			htim3.Init.Period = 2;
 			break;
 		case 10000:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 1;
 
-			htim2.Init.AutoReloadPreload = 8499;
-			htim3.Init.AutoReloadPreload = 8499;
+			htim2.Init.Period = 8499;
+			htim3.Init.Period = 8499;
 			break;
 		case 50000:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 1;
 
-			htim2.Init.AutoReloadPreload = 1699;
-			htim3.Init.AutoReloadPreload = 1699;
+			htim2.Init.Period = 1699;
+			htim3.Init.Period = 1699;
 			break;
 		case 100000:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 1;
 
-			htim2.Init.AutoReloadPreload = 849;
-			htim3.Init.AutoReloadPreload = 849;
+			htim2.Init.Period = 849;
+			htim3.Init.Period = 849;
 			break;
 		case 200000:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 1;
 
-			htim2.Init.AutoReloadPreload = 424;
-			htim3.Init.AutoReloadPreload = 424;
+			htim2.Init.Period = 424;
+			htim3.Init.Period = 424;
 			break;
 		case 500000:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 1;
 
-			htim2.Init.AutoReloadPreload = 169;
-			htim3.Init.AutoReloadPreload = 169;
+			htim2.Init.Period = 169;
+			htim3.Init.Period = 169;
 			break;
 		default:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 339;
 
-			htim2.Init.AutoReloadPreload = 8499999;
-			htim3.Init.AutoReloadPreload = 49999;
+			htim2.Init.Period = 8499999;
+			htim3.Init.Period = 49999;
 			break;
 
 	}
