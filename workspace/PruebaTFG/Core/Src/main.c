@@ -55,8 +55,8 @@ TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
 
-uint32_t AMP = 2048;
-uint32_t frequency = 10; //Frecuencia en Hz
+uint32_t amp = 2048;
+uint32_t frequency = 1000; //Frecuencia en Hz
 
 #define TAM_LUT 32
 #define TAM_BUFFER 4096
@@ -129,8 +129,8 @@ int main(void)
   calculaLut();
 
   //Timers
-  HAL_TIM_Base_Start(&htim3);
-  HAL_TIM_Base_Start(&htim2);
+  if (HAL_TIM_Base_Init(&htim2) != HAL_OK){Error_Handler();}
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK){Error_Handler();}
 
   //OPAMS
   if(HAL_OK != HAL_OPAMP_Start(&hopamp6)) { Error_Handler();}
@@ -563,7 +563,7 @@ void calculaLut(void){
 	float step = 2*M_PI/TAM_LUT;
 	uint32_t i = 0;
 	while(i < TAM_LUT){
-		uint32_t v = (uint32_t)((sin(i * step)*AMP/sin(2*M_PI/4))+AMP); //sin(TAM_LUT/4*step) = 0xFFF
+		uint32_t v = (uint32_t)((sin(i * step)*amp/sin(2*M_PI/4))+amp); //sin(TAM_LUT/4*step) = 0xFFF
 		lut[i] = v;
 		i++;
 	}
@@ -588,79 +588,91 @@ void ajustaTimers(void){
 
 			htim2.Init.AutoReloadPreload = 8499999;
 			htim3.Init.AutoReloadPreload = 49999;
+			break;
 		case 50:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 849;
 
 			htim2.Init.AutoReloadPreload = 1699999;
 			htim3.Init.AutoReloadPreload = 3999;
-
+			break;
 		case 100:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 399;
 
 			htim2.Init.AutoReloadPreload = 849999;
 			htim3.Init.AutoReloadPreload = 4249;
+			break;
 		case 200:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 199;
 
 			htim2.Init.AutoReloadPreload = 424999;
 			htim3.Init.AutoReloadPreload = 4249;
+			break;
 		case 500:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 79;
 
 			htim2.Init.AutoReloadPreload = 169999;
 			htim3.Init.AutoReloadPreload = 4249;
+			break;
 		case 700://698.78
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 3;
 
 			htim2.Init.AutoReloadPreload = 121428;
 			htim3.Init.AutoReloadPreload = 60819;
+			break;
 		case 1000:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 39;
 
 			htim2.Init.AutoReloadPreload = 84999;
 			htim3.Init.AutoReloadPreload = 4249;
+			break;
 		case 10000:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 1;
 
 			htim2.Init.AutoReloadPreload = 8499;
 			htim3.Init.AutoReloadPreload = 8499;
+			break;
 		case 50000:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 1;
 
 			htim2.Init.AutoReloadPreload = 1699;
 			htim3.Init.AutoReloadPreload = 1699;
+			break;
 		case 100000:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 1;
 
 			htim2.Init.AutoReloadPreload = 849;
 			htim3.Init.AutoReloadPreload = 849;
+			break;
 		case 200000:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 1;
 
 			htim2.Init.AutoReloadPreload = 424;
 			htim3.Init.AutoReloadPreload = 424;
+			break;
 		case 500000:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 1;
 
 			htim2.Init.AutoReloadPreload = 169;
 			htim3.Init.AutoReloadPreload = 169;
+			break;
 		default:
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 339;
 
 			htim2.Init.AutoReloadPreload = 8499999;
 			htim3.Init.AutoReloadPreload = 49999;
+			break;
 
 	}
 }
