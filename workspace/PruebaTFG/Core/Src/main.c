@@ -56,7 +56,7 @@ TIM_HandleTypeDef htim3;
 /* USER CODE BEGIN PV */
 
 uint32_t amp = 2048;
-uint32_t frequency = 1000; //Frecuencia en Hz
+uint32_t frequency = 500000; //Frecuencia en Hz
 
 #define TAM_LUT 32
 #define TAM_BUFFER 4096
@@ -585,96 +585,110 @@ void ajustaTimers(void){
 
 	//tim3 ARR 16 bits y tim2 ARR 32bits
 	switch(frequency){
-		case 10:
-			htim2.Init.Prescaler = 1;
-			htim3.Init.Prescaler = 339;
+		case 11://0.1 100mHz
+			htim2.Init.Prescaler = 2999;
+			htim3.Init.Prescaler = 2999;
 
-			htim2.Init.Period = 8499999;
-			htim3.Init.Period = 49999;
+			htim2.Init.Period = 17740;
+			htim3.Init.Period = 17740;
 			break;
-		case 50:
-			htim2.Init.Prescaler = 1;
-			htim3.Init.Prescaler = 849;
+		case 1://1
+			htim2.Init.Prescaler = 299;
+			htim3.Init.Prescaler = 299;
 
-			htim2.Init.Period = 1699999;
-			htim3.Init.Period = 3999;
+			htim2.Init.Period = 17740;
+			htim3.Init.Period = 17740;
 			break;
-		case 100:
-			htim2.Init.Prescaler = 1;
-			htim3.Init.Prescaler = 399;
+		case 10://10
+			htim2.Init.Prescaler = 29;
+			htim3.Init.Prescaler = 29;
 
-			htim2.Init.Period = 849999;
-			htim3.Init.Period = 4249;
+			htim2.Init.Period = 17740;
+			htim3.Init.Period = 17740;
 			break;
-		case 200://5.7ms
-			htim2.Init.Prescaler = 1;
-			htim3.Init.Prescaler = 199/30;
+		case 50://50
+			htim2.Init.Prescaler = 5;
+			htim3.Init.Prescaler = 5;
 
-			htim2.Init.Period = 424999;
-			htim3.Init.Period = 4249;
+			htim2.Init.Period = 17740;
+			htim3.Init.Period = 17740;
 			break;
-		case 500: //Exacto
-			htim2.Init.Prescaler = 1;
-			htim3.Init.Prescaler = 79/30;
+		case 100://100
+			htim2.Init.Prescaler = 2;
+			htim3.Init.Prescaler = 2;
 
-			htim2.Init.Period = 169999;
-			htim3.Init.Period = 4249;
+			htim2.Init.Period = 17740;
+			htim3.Init.Period = 17740;
 			break;
-		case 700://698.78  11.1ms != 1.4ms
+		case 200://200
+			htim2.Init.Prescaler = 2;
+			htim3.Init.Prescaler = 2;
+
+			htim2.Init.Period = 8870;
+			htim3.Init.Period = 8870;
+			break;
+		case 500: //500
+			htim2.Init.Prescaler = 4;
+			htim3.Init.Prescaler = 4;
+
+			htim2.Init.Period = 2129;
+			htim3.Init.Period = 2129;
+			break;
+		case 700://
 			htim2.Init.Prescaler = 1;
 			htim3.Init.Prescaler = 3;
 
 			htim2.Init.Period = 121428;
 			htim3.Init.Period = 60819;
 			break;
-		case 1000://1.5ms
-			htim2.Init.Prescaler = 1;
-			htim3.Init.Prescaler = 16;
+		case 1000://1000
+			htim2.Init.Prescaler = 2;
+			htim3.Init.Prescaler = 2;
 
-			htim2.Init.Period = 84999;
-			htim3.Init.Period = 2;
+			htim2.Init.Period = 1774;
+			htim3.Init.Period = 1774;
 			break;
-		case 10000:
-			htim2.Init.Prescaler = 1;
-			htim3.Init.Prescaler = 1;
+		case 10000://10000
+			htim2.Init.Prescaler = 2;
+			htim3.Init.Prescaler = 2;
 
-			htim2.Init.Period = 8499;
-			htim3.Init.Period = 8499;
+			htim2.Init.Period = 177;
+			htim3.Init.Period = 177;
 			break;
-		case 50000:
-			htim2.Init.Prescaler = 1;
-			htim3.Init.Prescaler = 1;
+		case 50000://50000
+			htim2.Init.Prescaler = 0;
+			htim3.Init.Prescaler = 0;
 
-			htim2.Init.Period = 1699;
-			htim3.Init.Period = 1699;
+			htim2.Init.Period = 105;
+			htim3.Init.Period = 105;
 			break;
-		case 100000:
-			htim2.Init.Prescaler = 1;
-			htim3.Init.Prescaler = 1;
+		case 100000://100000
+			htim2.Init.Prescaler = 0;
+			htim3.Init.Prescaler = 0;
 
-			htim2.Init.Period = 849;
-			htim3.Init.Period = 849;
+			htim2.Init.Period = 52;
+			htim3.Init.Period = 52;
 			break;
-		case 200000:
-			htim2.Init.Prescaler = 1;
-			htim3.Init.Prescaler = 1;
+		case 200000://200000
+			htim2.Init.Prescaler = 0;
+			htim3.Init.Prescaler = 0;
 
-			htim2.Init.Period = 424;
-			htim3.Init.Period = 424;
+			htim2.Init.Period = 25;
+			htim3.Init.Period = 25;
 			break;
-		case 500000:
-			htim2.Init.Prescaler = 1;
-			htim3.Init.Prescaler = 1;
+		case 500000://500000
+			htim2.Init.Prescaler = 0;
+			htim3.Init.Prescaler = 0;
 
-			htim2.Init.Period = 169;
-			htim3.Init.Period = 169;
+			htim2.Init.Period = 4;
+			htim3.Init.Period = 4;
 			break;
 		default:
-			htim2.Init.Prescaler = 1;
-			htim3.Init.Prescaler = 339;
+			htim2.Init.Prescaler = 0;
+			htim3.Init.Prescaler = 0;
 
-			htim2.Init.Period = 8499999;
-			htim3.Init.Period = 49999;
+			htim2.Init.Period = 4;
+			htim3.Init.Period = 4;
 			break;
 
 	}
