@@ -290,6 +290,32 @@ void HAL_OPAMP_MspInit(OPAMP_HandleTypeDef* hopamp)
 
   /* USER CODE END OPAMP4_MspInit 1 */
   }
+  else if(hopamp->Instance==OPAMP5)
+  {
+  /* USER CODE BEGIN OPAMP5_MspInit 0 */
+
+  /* USER CODE END OPAMP5_MspInit 0 */
+
+    __HAL_RCC_GPIOC_CLK_ENABLE();
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+    /**OPAMP5 GPIO Configuration
+    PC3     ------> OPAMP5_VINP
+    PA8     ------> OPAMP5_VOUT
+    */
+    GPIO_InitStruct.Pin = GPIO_PIN_3;
+    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+    GPIO_InitStruct.Pin = GPIO_PIN_8;
+    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /* USER CODE BEGIN OPAMP5_MspInit 1 */
+
+  /* USER CODE END OPAMP5_MspInit 1 */
+  }
   else if(hopamp->Instance==OPAMP6)
   {
   /* USER CODE BEGIN OPAMP6_MspInit 0 */
@@ -352,6 +378,24 @@ void HAL_OPAMP_MspDeInit(OPAMP_HandleTypeDef* hopamp)
   /* USER CODE BEGIN OPAMP4_MspDeInit 1 */
 
   /* USER CODE END OPAMP4_MspDeInit 1 */
+  }
+  else if(hopamp->Instance==OPAMP5)
+  {
+  /* USER CODE BEGIN OPAMP5_MspDeInit 0 */
+
+  /* USER CODE END OPAMP5_MspDeInit 0 */
+
+    /**OPAMP5 GPIO Configuration
+    PC3     ------> OPAMP5_VINP
+    PA8     ------> OPAMP5_VOUT
+    */
+    HAL_GPIO_DeInit(GPIOC, GPIO_PIN_3);
+
+    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_8);
+
+  /* USER CODE BEGIN OPAMP5_MspDeInit 1 */
+
+  /* USER CODE END OPAMP5_MspDeInit 1 */
   }
   else if(hopamp->Instance==OPAMP6)
   {

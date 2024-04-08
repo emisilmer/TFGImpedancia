@@ -48,6 +48,7 @@ DMA_HandleTypeDef hdma_dac3_ch1;
 
 OPAMP_HandleTypeDef hopamp3;
 OPAMP_HandleTypeDef hopamp4;
+OPAMP_HandleTypeDef hopamp5;
 OPAMP_HandleTypeDef hopamp6;
 
 TIM_HandleTypeDef htim2;
@@ -56,7 +57,7 @@ TIM_HandleTypeDef htim3;
 /* USER CODE BEGIN PV */
 
 uint32_t amp = 2048;
-uint32_t frequency = 500000; //Frecuencia en Hz
+uint32_t frequency = 11; //Frecuencia en Hz
 
 #define TAM_LUT 32
 #define TAM_BUFFER 4096
@@ -76,6 +77,7 @@ static void MX_ADC1_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_OPAMP3_Init(void);
 static void MX_OPAMP4_Init(void);
+static void MX_OPAMP5_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -121,6 +123,7 @@ int main(void)
   MX_TIM2_Init();
   MX_OPAMP3_Init();
   MX_OPAMP4_Init();
+  MX_OPAMP5_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_DeInit(&htim2);
   HAL_TIM_Base_DeInit(&htim3);
@@ -139,6 +142,8 @@ int main(void)
   if(HAL_OK != HAL_OPAMP_Start(&hopamp6)) { Error_Handler();}
   if(HAL_OK != HAL_OPAMP_Start(&hopamp4)) { Error_Handler();}
   if(HAL_OK != HAL_OPAMP_Start(&hopamp3)) { Error_Handler();}
+  if(HAL_OK != HAL_OPAMP_Start(&hopamp5)) { Error_Handler();}
+
 
   //DAC
   if(HAL_DACEx_DualSetValue(&hdac3, DAC_ALIGN_12B_R, 0, 0) != HAL_OK) { Error_Handler();}
@@ -391,6 +396,38 @@ static void MX_OPAMP4_Init(void)
 }
 
 /**
+  * @brief OPAMP5 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_OPAMP5_Init(void)
+{
+
+  /* USER CODE BEGIN OPAMP5_Init 0 */
+
+  /* USER CODE END OPAMP5_Init 0 */
+
+  /* USER CODE BEGIN OPAMP5_Init 1 */
+
+  /* USER CODE END OPAMP5_Init 1 */
+  hopamp5.Instance = OPAMP5;
+  hopamp5.Init.PowerMode = OPAMP_POWERMODE_NORMALSPEED;
+  hopamp5.Init.Mode = OPAMP_FOLLOWER_MODE;
+  hopamp5.Init.NonInvertingInput = OPAMP_NONINVERTINGINPUT_IO2;
+  hopamp5.Init.InternalOutput = DISABLE;
+  hopamp5.Init.TimerControlledMuxmode = OPAMP_TIMERCONTROLLEDMUXMODE_DISABLE;
+  hopamp5.Init.UserTrimming = OPAMP_TRIMMING_FACTORY;
+  if (HAL_OPAMP_Init(&hopamp5) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN OPAMP5_Init 2 */
+
+  /* USER CODE END OPAMP5_Init 2 */
+
+}
+
+/**
   * @brief OPAMP6 Initialization Function
   * @param None
   * @retval None
@@ -544,6 +581,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
