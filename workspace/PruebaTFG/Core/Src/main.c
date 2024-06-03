@@ -156,8 +156,8 @@ int main(void)
   HAL_Delay(10);		// Wait 10ms so that the signal is stable.
 
   //ADC
-  HAL_ADCEx_Calibration_Start(&hadc1, ADC_DIFFERENTIAL_ENDED);
-  HAL_ADCEx_Calibration_Start(&hadc2, ADC_DIFFERENTIAL_ENDED);
+  //HAL_ADCEx_Calibration_Start(&hadc1, ADC_DIFFERENTIAL_ENDED);
+  //HAL_ADCEx_Calibration_Start(&hadc2, ADC_DIFFERENTIAL_ENDED);
 
   if (HAL_ADC_Start_DMA(&hadc1,(uint32_t *)adc1_buffer,4096) != HAL_OK){Error_Handler();}
   if (HAL_ADC_Start_DMA(&hadc2,(uint32_t *)adc2_buffer,4096) != HAL_OK){Error_Handler();}

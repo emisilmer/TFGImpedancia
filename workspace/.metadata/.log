@@ -1304,3 +1304,22 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\Emilio\Deskto
 
 !ENTRY org.eclipse.cdt.core 1 0 2024-06-02 18:55:21.564
 !MESSAGE Indexed 'PruebaTFG' (28 sources, 123 headers) in 7.57 sec: 14,314 declarations; 84,373 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0.17%)
+!SESSION 2024-06-03 17:24:39.721 -----------------------------------------------
+eclipse.buildId=Version 1.13.2
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  C:\Users\salva\Desktop\GitTFG\workspace\PruebaTFG\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\salva\Desktop\GitTFG\workspace\PruebaTFG\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-06-03 17:27:34.600
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-06-03 17:27:34.607
+!MESSAGE Log4j2 initialized with config file C:\Users\salva\Desktop\GitTFG\workspace\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-06-03 17:27:45.007
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-06-03 17:27:51.848
+!MESSAGE Indexed 'PruebaTFG' (28 sources, 123 headers) in 6.16 sec: 14,330 declarations; 84,745 references; 3 unresolved inclusions; 46 syntax errors; 172 unresolved names (0.17%)
