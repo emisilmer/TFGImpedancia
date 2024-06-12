@@ -1,25 +1,25 @@
-17:29:33 **** Incremental Build of configuration Debug for project PruebaTFG ****
+17:55:25 **** Incremental Build of configuration Debug for project PruebaTFG ****
 make -j12 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:133:3: warning: implicit declaration of function 'ajustaTimers' [-Wimplicit-function-declaration]
-  133 |   ajustaTimers();
+../Core/Src/main.c:141:3: warning: implicit declaration of function 'ajustaTimers' [-Wimplicit-function-declaration]
+  141 |   ajustaTimers();
       |   ^~~~~~~~~~~~
-../Core/Src/main.c:134:3: warning: implicit declaration of function 'calculaLut' [-Wimplicit-function-declaration]
-  134 |   calculaLut();
+../Core/Src/main.c:142:3: warning: implicit declaration of function 'calculaLut' [-Wimplicit-function-declaration]
+  142 |   calculaLut();
       |   ^~~~~~~~~~
 ../Core/Src/main.c: At top level:
-../Core/Src/main.c:623:6: warning: conflicting types for 'calculaLut'; have 'void()'
-  623 | void calculaLut(){
+../Core/Src/main.c:683:6: warning: conflicting types for 'calculaLut'; have 'void()'
+  683 | void calculaLut(){
       |      ^~~~~~~~~~
-../Core/Src/main.c:134:3: note: previous implicit declaration of 'calculaLut' with type 'void()'
-  134 |   calculaLut();
+../Core/Src/main.c:142:3: note: previous implicit declaration of 'calculaLut' with type 'void()'
+  142 |   calculaLut();
       |   ^~~~~~~~~~
-../Core/Src/main.c:633:6: warning: conflicting types for 'ajustaTimers'; have 'void()'
-  633 | void ajustaTimers(){
+../Core/Src/main.c:693:6: warning: conflicting types for 'ajustaTimers'; have 'void()'
+  693 | void ajustaTimers(){
       |      ^~~~~~~~~~~~
-../Core/Src/main.c:133:3: note: previous implicit declaration of 'ajustaTimers' with type 'void()'
-  133 |   ajustaTimers();
+../Core/Src/main.c:141:3: note: previous implicit declaration of 'ajustaTimers' with type 'void()'
+  141 |   ajustaTimers();
       |   ^~~~~~~~~~~~
 arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\salva\Desktop\GitTFG\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: PruebaTFG.elf
@@ -27,41 +27,44 @@ Finished building target: PruebaTFG.elf
 arm-none-eabi-size   PruebaTFG.elf 
 arm-none-eabi-objdump -h -S  PruebaTFG.elf  > "PruebaTFG.list"
    text	   data	    bss	    dec	    hex	filename
-  29392	     32	   3824	  33248	   81e0	PruebaTFG.elf
+  33704	     32	   5248	  38984	   9848	PruebaTFG.elf
 Finished building: default.size.stdout
  
 Finished building: PruebaTFG.list
  
-17:30:15 **** Incremental Build of configuration Debug for project PruebaTFG ****
-make -j12 all 
-arm-none-eabi-size   PruebaTFG.elf 
-   text	   data	    bss	    dec	    hex	filename
-  29392	     32	   3824	  33248	   81e0	PruebaTFG.elf
-Finished building: default.size.stdout
- 
-17:36:11 **** Incremental Build of configuration Debug for project PruebaTFG ****
+17:55:59 **** Incremental Build of configuration Debug for project PruebaTFG ****
 make -j12 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/stm32g4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_hal_msp.d" -MT"Core/Src/stm32g4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_hal_msp.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:133:3: warning: implicit declaration of function 'ajustaTimers' [-Wimplicit-function-declaration]
-  133 |   ajustaTimers();
+../Core/Src/main.c:115:3: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  115 |   printf("Hello World %i\n", 12);
+      |   ^~~~~~
+../Core/Src/main.c:25:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   24 | #include "math.h"
+  +++ |+#include <stdio.h>
+   25 | /* USER CODE END Includes */
+../Core/Src/main.c:115:3: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+  115 |   printf("Hello World %i\n", 12);
+      |   ^~~~~~
+../Core/Src/main.c:115:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/main.c:142:3: warning: implicit declaration of function 'ajustaTimers' [-Wimplicit-function-declaration]
+  142 |   ajustaTimers();
       |   ^~~~~~~~~~~~
-../Core/Src/main.c:134:3: warning: implicit declaration of function 'calculaLut' [-Wimplicit-function-declaration]
-  134 |   calculaLut();
+../Core/Src/main.c:143:3: warning: implicit declaration of function 'calculaLut' [-Wimplicit-function-declaration]
+  143 |   calculaLut();
       |   ^~~~~~~~~~
 ../Core/Src/main.c: At top level:
-../Core/Src/main.c:623:6: warning: conflicting types for 'calculaLut'; have 'void()'
-  623 | void calculaLut(){
+../Core/Src/main.c:684:6: warning: conflicting types for 'calculaLut'; have 'void()'
+  684 | void calculaLut(){
       |      ^~~~~~~~~~
-../Core/Src/main.c:134:3: note: previous implicit declaration of 'calculaLut' with type 'void()'
-  134 |   calculaLut();
+../Core/Src/main.c:143:3: note: previous implicit declaration of 'calculaLut' with type 'void()'
+  143 |   calculaLut();
       |   ^~~~~~~~~~
-../Core/Src/main.c:633:6: warning: conflicting types for 'ajustaTimers'; have 'void()'
-  633 | void ajustaTimers(){
+../Core/Src/main.c:694:6: warning: conflicting types for 'ajustaTimers'; have 'void()'
+  694 | void ajustaTimers(){
       |      ^~~~~~~~~~~~
-../Core/Src/main.c:133:3: note: previous implicit declaration of 'ajustaTimers' with type 'void()'
-  133 |   ajustaTimers();
+../Core/Src/main.c:142:3: note: previous implicit declaration of 'ajustaTimers' with type 'void()'
+  142 |   ajustaTimers();
       |   ^~~~~~~~~~~~
 arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\salva\Desktop\GitTFG\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: PruebaTFG.elf
@@ -69,40 +72,51 @@ Finished building target: PruebaTFG.elf
 arm-none-eabi-size   PruebaTFG.elf 
 arm-none-eabi-objdump -h -S  PruebaTFG.elf  > "PruebaTFG.list"
    text	   data	    bss	    dec	    hex	filename
-  29392	     32	   3824	  33248	   81e0	PruebaTFG.elf
+  38224	    124	   5580	  43928	   ab98	PruebaTFG.elf
 Finished building: default.size.stdout
  
 Finished building: PruebaTFG.list
  
-17:41:00 **** Incremental Build of configuration Debug for project PruebaTFG ****
+17:56:38 **** Incremental Build of configuration Debug for project PruebaTFG ****
 make -j12 all 
 arm-none-eabi-size   PruebaTFG.elf 
    text	   data	    bss	    dec	    hex	filename
-  29392	     32	   3824	  33248	   81e0	PruebaTFG.elf
+  38224	    124	   5580	  43928	   ab98	PruebaTFG.elf
 Finished building: default.size.stdout
  
-17:42:39 **** Incremental Build of configuration Debug for project PruebaTFG ****
+17:57:02 **** Incremental Build of configuration Debug for project PruebaTFG ****
 make -j12 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:133:3: warning: implicit declaration of function 'ajustaTimers' [-Wimplicit-function-declaration]
-  133 |   ajustaTimers();
+../Core/Src/main.c:141:3: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  141 |   printf("Hello World %i\n", 12);
+      |   ^~~~~~
+../Core/Src/main.c:25:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   24 | #include "math.h"
+  +++ |+#include <stdio.h>
+   25 | /* USER CODE END Includes */
+../Core/Src/main.c:141:3: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+  141 |   printf("Hello World %i\n", 12);
+      |   ^~~~~~
+../Core/Src/main.c:141:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/main.c:142:3: warning: implicit declaration of function 'ajustaTimers' [-Wimplicit-function-declaration]
+  142 |   ajustaTimers();
       |   ^~~~~~~~~~~~
-../Core/Src/main.c:134:3: warning: implicit declaration of function 'calculaLut' [-Wimplicit-function-declaration]
-  134 |   calculaLut();
+../Core/Src/main.c:143:3: warning: implicit declaration of function 'calculaLut' [-Wimplicit-function-declaration]
+  143 |   calculaLut();
       |   ^~~~~~~~~~
 ../Core/Src/main.c: At top level:
-../Core/Src/main.c:623:6: warning: conflicting types for 'calculaLut'; have 'void()'
-  623 | void calculaLut(){
+../Core/Src/main.c:684:6: warning: conflicting types for 'calculaLut'; have 'void()'
+  684 | void calculaLut(){
       |      ^~~~~~~~~~
-../Core/Src/main.c:134:3: note: previous implicit declaration of 'calculaLut' with type 'void()'
-  134 |   calculaLut();
+../Core/Src/main.c:143:3: note: previous implicit declaration of 'calculaLut' with type 'void()'
+  143 |   calculaLut();
       |   ^~~~~~~~~~
-../Core/Src/main.c:633:6: warning: conflicting types for 'ajustaTimers'; have 'void()'
-  633 | void ajustaTimers(){
+../Core/Src/main.c:694:6: warning: conflicting types for 'ajustaTimers'; have 'void()'
+  694 | void ajustaTimers(){
       |      ^~~~~~~~~~~~
-../Core/Src/main.c:133:3: note: previous implicit declaration of 'ajustaTimers' with type 'void()'
-  133 |   ajustaTimers();
+../Core/Src/main.c:142:3: note: previous implicit declaration of 'ajustaTimers' with type 'void()'
+  142 |   ajustaTimers();
       |   ^~~~~~~~~~~~
 arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\salva\Desktop\GitTFG\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: PruebaTFG.elf
@@ -110,68 +124,92 @@ Finished building target: PruebaTFG.elf
 arm-none-eabi-size   PruebaTFG.elf 
 arm-none-eabi-objdump -h -S  PruebaTFG.elf  > "PruebaTFG.list"
    text	   data	    bss	    dec	    hex	filename
-  29392	     32	   3824	  33248	   81e0	PruebaTFG.elf
-Finished building: default.size.stdout
- 
-Finished building: PruebaTFG.list
- 
-17:44:45 **** Incremental Build of configuration Debug for project PruebaTFG ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:133:3: warning: implicit declaration of function 'ajustaTimers' [-Wimplicit-function-declaration]
-  133 |   ajustaTimers();
-      |   ^~~~~~~~~~~~
-../Core/Src/main.c:134:3: warning: implicit declaration of function 'calculaLut' [-Wimplicit-function-declaration]
-  134 |   calculaLut();
-      |   ^~~~~~~~~~
-../Core/Src/main.c: At top level:
-../Core/Src/main.c:623:6: warning: conflicting types for 'calculaLut'; have 'void()'
-  623 | void calculaLut(){
-      |      ^~~~~~~~~~
-../Core/Src/main.c:134:3: note: previous implicit declaration of 'calculaLut' with type 'void()'
-  134 |   calculaLut();
-      |   ^~~~~~~~~~
-../Core/Src/main.c:633:6: warning: conflicting types for 'ajustaTimers'; have 'void()'
-  633 | void ajustaTimers(){
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:133:3: note: previous implicit declaration of 'ajustaTimers' with type 'void()'
-  133 |   ajustaTimers();
-      |   ^~~~~~~~~~~~
-arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\salva\Desktop\GitTFG\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PruebaTFG.elf
- 
-arm-none-eabi-size   PruebaTFG.elf 
-arm-none-eabi-objdump -h -S  PruebaTFG.elf  > "PruebaTFG.list"
-   text	   data	    bss	    dec	    hex	filename
-  29392	     32	   5104	  34528	   86e0	PruebaTFG.elf
+  38224	    124	   5580	  43928	   ab98	PruebaTFG.elf
 Finished building: default.size.stdout
  
 Finished building: PruebaTFG.list
  
-17:47:27 **** Incremental Build of configuration Debug for project PruebaTFG ****
+17:59:51 **** Incremental Build of configuration Debug for project PruebaTFG ****
 make -j12 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/stm32g4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32g4xx_hal_msp.d" -MT"Core/Src/stm32g4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32g4xx_hal_msp.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:133:3: warning: implicit declaration of function 'ajustaTimers' [-Wimplicit-function-declaration]
-  133 |   ajustaTimers();
+../Core/Src/main.c:141:3: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  141 |   printf("Hello World %i\n", 12);
+      |   ^~~~~~
+../Core/Src/main.c:25:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   24 | #include "math.h"
+  +++ |+#include <stdio.h>
+   25 | /* USER CODE END Includes */
+../Core/Src/main.c:141:3: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+  141 |   printf("Hello World %i\n", 12);
+      |   ^~~~~~
+../Core/Src/main.c:141:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/main.c:142:3: warning: implicit declaration of function 'ajustaTimers' [-Wimplicit-function-declaration]
+  142 |   ajustaTimers();
       |   ^~~~~~~~~~~~
-../Core/Src/main.c:134:3: warning: implicit declaration of function 'calculaLut' [-Wimplicit-function-declaration]
-  134 |   calculaLut();
+../Core/Src/main.c:143:3: warning: implicit declaration of function 'calculaLut' [-Wimplicit-function-declaration]
+  143 |   calculaLut();
       |   ^~~~~~~~~~
+../Core/Src/main.c:179:22: error: expected ';' before 'for'
+  179 |         printf("<M>")
+      |                      ^
+      |                      ;
+  180 |         for(int j=0; j<TAM_BUFFER; j++){
+      |         ~~~           
 ../Core/Src/main.c: At top level:
-../Core/Src/main.c:623:6: warning: conflicting types for 'calculaLut'; have 'void()'
-  623 | void calculaLut(){
+../Core/Src/main.c:692:6: warning: conflicting types for 'calculaLut'; have 'void()'
+  692 | void calculaLut(){
       |      ^~~~~~~~~~
-../Core/Src/main.c:134:3: note: previous implicit declaration of 'calculaLut' with type 'void()'
-  134 |   calculaLut();
+../Core/Src/main.c:143:3: note: previous implicit declaration of 'calculaLut' with type 'void()'
+  143 |   calculaLut();
       |   ^~~~~~~~~~
-../Core/Src/main.c:633:6: warning: conflicting types for 'ajustaTimers'; have 'void()'
-  633 | void ajustaTimers(){
+../Core/Src/main.c:702:6: warning: conflicting types for 'ajustaTimers'; have 'void()'
+  702 | void ajustaTimers(){
       |      ^~~~~~~~~~~~
-../Core/Src/main.c:133:3: note: previous implicit declaration of 'ajustaTimers' with type 'void()'
-  133 |   ajustaTimers();
+../Core/Src/main.c:142:3: note: previous implicit declaration of 'ajustaTimers' with type 'void()'
+  142 |   ajustaTimers();
+      |   ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+18:00:05 **** Incremental Build of configuration Debug for project PruebaTFG ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:141:3: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  141 |   printf("Hello World %i\n", 12);
+      |   ^~~~~~
+../Core/Src/main.c:25:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   24 | #include "math.h"
+  +++ |+#include <stdio.h>
+   25 | /* USER CODE END Includes */
+../Core/Src/main.c:141:3: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+  141 |   printf("Hello World %i\n", 12);
+      |   ^~~~~~
+../Core/Src/main.c:141:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/main.c:142:3: warning: implicit declaration of function 'ajustaTimers' [-Wimplicit-function-declaration]
+  142 |   ajustaTimers();
+      |   ^~~~~~~~~~~~
+../Core/Src/main.c:143:3: warning: implicit declaration of function 'calculaLut' [-Wimplicit-function-declaration]
+  143 |   calculaLut();
+      |   ^~~~~~~~~~
+../Core/Src/main.c:181:26: warning: format '%d' expects argument of type 'int', but argument 2 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  181 |                 printf("%d",adc1_buffer[j]);
+      |                         ~^  ~~~~~~~~~~~~~~
+      |                          |             |
+      |                          int           uint32_t {aka long unsigned int}
+      |                         %ld
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:692:6: warning: conflicting types for 'calculaLut'; have 'void()'
+  692 | void calculaLut(){
+      |      ^~~~~~~~~~
+../Core/Src/main.c:143:3: note: previous implicit declaration of 'calculaLut' with type 'void()'
+  143 |   calculaLut();
+      |   ^~~~~~~~~~
+../Core/Src/main.c:702:6: warning: conflicting types for 'ajustaTimers'; have 'void()'
+  702 | void ajustaTimers(){
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:142:3: note: previous implicit declaration of 'ajustaTimers' with type 'void()'
+  142 |   ajustaTimers();
       |   ^~~~~~~~~~~~
 arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\salva\Desktop\GitTFG\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: PruebaTFG.elf
@@ -179,7 +217,115 @@ Finished building target: PruebaTFG.elf
 arm-none-eabi-size   PruebaTFG.elf 
 arm-none-eabi-objdump -h -S  PruebaTFG.elf  > "PruebaTFG.list"
    text	   data	    bss	    dec	    hex	filename
-  29392	     32	   5104	  34528	   86e0	PruebaTFG.elf
+  38296	    124	   5580	  44000	   abe0	PruebaTFG.elf
+Finished building: default.size.stdout
+ 
+Finished building: PruebaTFG.list
+ 
+18:00:40 **** Incremental Build of configuration Debug for project PruebaTFG ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:141:3: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  141 |   printf("Hello World %i\n", 12);
+      |   ^~~~~~
+../Core/Src/main.c:25:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   24 | #include "math.h"
+  +++ |+#include <stdio.h>
+   25 | /* USER CODE END Includes */
+../Core/Src/main.c:141:3: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+  141 |   printf("Hello World %i\n", 12);
+      |   ^~~~~~
+../Core/Src/main.c:141:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/main.c:142:3: warning: implicit declaration of function 'ajustaTimers' [-Wimplicit-function-declaration]
+  142 |   ajustaTimers();
+      |   ^~~~~~~~~~~~
+../Core/Src/main.c:143:3: warning: implicit declaration of function 'calculaLut' [-Wimplicit-function-declaration]
+  143 |   calculaLut();
+      |   ^~~~~~~~~~
+../Core/Src/main.c:181:26: warning: format '%d' expects argument of type 'int', but argument 2 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  181 |                 printf("%d,",adc1_buffer[j]);
+      |                         ~^   ~~~~~~~~~~~~~~
+      |                          |              |
+      |                          int            uint32_t {aka long unsigned int}
+      |                         %ld
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:692:6: warning: conflicting types for 'calculaLut'; have 'void()'
+  692 | void calculaLut(){
+      |      ^~~~~~~~~~
+../Core/Src/main.c:143:3: note: previous implicit declaration of 'calculaLut' with type 'void()'
+  143 |   calculaLut();
+      |   ^~~~~~~~~~
+../Core/Src/main.c:702:6: warning: conflicting types for 'ajustaTimers'; have 'void()'
+  702 | void ajustaTimers(){
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:142:3: note: previous implicit declaration of 'ajustaTimers' with type 'void()'
+  142 |   ajustaTimers();
+      |   ^~~~~~~~~~~~
+arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\salva\Desktop\GitTFG\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: PruebaTFG.elf
+ 
+arm-none-eabi-size   PruebaTFG.elf 
+arm-none-eabi-objdump -h -S  PruebaTFG.elf  > "PruebaTFG.list"
+   text	   data	    bss	    dec	    hex	filename
+  38296	    124	   5580	  44000	   abe0	PruebaTFG.elf
+Finished building: default.size.stdout
+ 
+Finished building: PruebaTFG.list
+ 
+18:02:23 **** Incremental Build of configuration Debug for project PruebaTFG ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:141:3: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  141 |   printf("Hello World %i\n", 12);
+      |   ^~~~~~
+../Core/Src/main.c:25:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   24 | #include "math.h"
+  +++ |+#include <stdio.h>
+   25 | /* USER CODE END Includes */
+../Core/Src/main.c:141:3: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+  141 |   printf("Hello World %i\n", 12);
+      |   ^~~~~~
+../Core/Src/main.c:141:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/main.c:142:3: warning: implicit declaration of function 'ajustaTimers' [-Wimplicit-function-declaration]
+  142 |   ajustaTimers();
+      |   ^~~~~~~~~~~~
+../Core/Src/main.c:143:3: warning: implicit declaration of function 'calculaLut' [-Wimplicit-function-declaration]
+  143 |   calculaLut();
+      |   ^~~~~~~~~~
+../Core/Src/main.c:181:26: warning: format '%d' expects argument of type 'int', but argument 2 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  181 |                 printf("%d,",adc1_buffer[j]);
+      |                         ~^   ~~~~~~~~~~~~~~
+      |                          |              |
+      |                          int            uint32_t {aka long unsigned int}
+      |                         %ld
+../Core/Src/main.c:187:26: warning: format '%d' expects argument of type 'int', but argument 2 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  187 |                 printf("%d,",adc2_buffer[j]);
+      |                         ~^   ~~~~~~~~~~~~~~
+      |                          |              |
+      |                          int            uint32_t {aka long unsigned int}
+      |                         %ld
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:698:6: warning: conflicting types for 'calculaLut'; have 'void()'
+  698 | void calculaLut(){
+      |      ^~~~~~~~~~
+../Core/Src/main.c:143:3: note: previous implicit declaration of 'calculaLut' with type 'void()'
+  143 |   calculaLut();
+      |   ^~~~~~~~~~
+../Core/Src/main.c:708:6: warning: conflicting types for 'ajustaTimers'; have 'void()'
+  708 | void ajustaTimers(){
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:142:3: note: previous implicit declaration of 'ajustaTimers' with type 'void()'
+  142 |   ajustaTimers();
+      |   ^~~~~~~~~~~~
+arm-none-eabi-gcc -o "PruebaTFG.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\salva\Desktop\GitTFG\workspace\PruebaTFG\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PruebaTFG.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: PruebaTFG.elf
+ 
+arm-none-eabi-size   PruebaTFG.elf 
+arm-none-eabi-objdump -h -S  PruebaTFG.elf  > "PruebaTFG.list"
+   text	   data	    bss	    dec	    hex	filename
+  38368	    124	   5580	  44072	   ac28	PruebaTFG.elf
 Finished building: default.size.stdout
  
 Finished building: PruebaTFG.list
