@@ -59,13 +59,13 @@ TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
 
-uint32_t amp = 2048;
 uint32_t frequency = 100000; //Frecuencia en Hz
 
 #define TAM_LUT 32
-#define TAM_BUFFER TAM_LUT*10
+uint32_t amp = 2048;
 uint32_t lut[TAM_LUT] = {0};
 uint32_t lut_size = sizeof(lut)/sizeof(lut[0]);
+#define TAM_BUFFER TAM_LUT*10
 uint32_t adc1_buffer[TAM_BUFFER] = {0};
 uint32_t adc2_buffer[TAM_BUFFER] = {0};
 /* USER CODE END PV */
@@ -135,36 +135,45 @@ int main(void)
   MX_ADC2_Init();
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  //HAL_TIM_Base_DeInit(&htim2);
-  HAL_TIM_Base_DeInit(&htim3);
 
   printf("Hello World %i\n", 12);
+
+  HAL_TIM_Base_DeInit(&htim3);
+
   ajustaTimers();
   calculaLut();
 
   //Timers
-  //if (HAL_TIM_Base_Init(&htim2) != HAL_OK){Error_Handler();}
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK){Error_Handler();}
 
-  //HAL_TIM_Base_Start(&htim2);
   HAL_TIM_Base_Start(&htim3);
 
   //OPAMS
   if(HAL_OK != HAL_OPAMP_Start(&hopamp6)) { Error_Handler();}
   if(HAL_OK != HAL_OPAMP_Start(&hopamp4)) { Error_Handler();}
   if(HAL_OK != HAL_OPAMP_Start(&hopamp3)) { Error_Handler();}
+
+
   if(HAL_OK != HAL_OPAMP_Start(&hopamp5)) { Error_Handler();}
 
 
   //DAC
-  if(HAL_DACEx_DualSetValue(&hdac3, DAC_ALIGN_12B_R, 0, 0) != HAL_OK) { Error_Handler();}
-  if(HAL_DACEx_DualStart_DMA(&hdac3, DAC_CHANNEL_1, (uint32_t*)lut,lut_size,DAC_ALIGN_12B_R)!= HAL_OK){ Error_Handler();}
+  if(HAL_DACEx_DualSetValue(&hdac3, DAC_ALIGN_12B_R, 0, 0) != HAL_OK) {
+	  Error_Handler();
+  }
+  if(HAL_DACEx_DualStart_DMA(&hdac3,DAC_CHANNEL_1,(uint32_t*)lut,lut_size,DAC_ALIGN_12B_R)!= HAL_OK){
+	  Error_Handler();
+  }
 
   HAL_Delay(10);		// Wait 10ms so that the signal is stable.
 
   //ADC
-  if (HAL_ADC_Start_DMA(&hadc1,(uint32_t *)adc1_buffer,TAM_BUFFER) != HAL_OK){Error_Handler();}
-  if (HAL_ADC_Start_DMA(&hadc2,(uint32_t *)adc2_buffer,TAM_BUFFER) != HAL_OK){Error_Handler();}
+  if (HAL_ADC_Start_DMA(&hadc1,(uint32_t *)adc1_buffer,TAM_BUFFER) != HAL_OK){
+	  Error_Handler();
+  }
+  if (HAL_ADC_Start_DMA(&hadc2,(uint32_t *)adc2_buffer,TAM_BUFFER) != HAL_OK){
+	  Error_Handler();
+  }
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -699,128 +708,94 @@ void calculaLut(){
 	float step = 2*M_PI/TAM_LUT;
 	uint32_t i = 0;
 	while(i < TAM_LUT){
-		uint32_t v = (uint32_t)((sin(i * step)*amp/sin(2*M_PI/4))+amp); //sin(TAM_LUT/4*step) = 0xFFF
+		//sin(TAM_LUT/4*step) = 0xFFF
+		uint32_t v = (uint32_t)((sin(i * step)*amp/sin(2*M_PI/4))+amp);
 		lut[i] = v;
 		i++;
 	}
 }
 
 void ajustaTimers(){
-	//TIM3 y TIM2 preescaler y periodo
-
-	//preescaler divide por un integer del 1 al 65536
+	//TIM3 preescaler y periodo
 	//170Mhz clock
-	//Counter period reinicia el contador cuando llega al valor
-	//10hz-500khz
-	//10hz,50hz,100hz,200hz,500hz,700hz,1khz,10khz,50khz,100khz,200khz,500khz
+	//100mhz-500khz
+	//100mhz,1hz,10hz,50hz,100hz,200hz,500hz,700hz,1khz,10khz,50khz,100khz,200khz,500khz
 	//f_deseada = f_timer/((ARR+1)x(PSC+1))
-	//uint32_t f_timer = HAL_RCC_GetSysClockFreq();
-
-	//tim3 ARR 16 bits y tim2 ARR 32bits
+	//tim3 ARR 16 bits - PSC 16 bits
 	switch(frequency){
 		case 11://0.1 100mHz
-			//htim2.Init.Prescaler = 2999;
 			htim3.Init.Prescaler = 2999;
 
-			//htim2.Init.Period = 17740;
 			htim3.Init.Period = 17740;
 			break;
 		case 1://1
-			//htim2.Init.Prescaler = 299;
 			htim3.Init.Prescaler = 299;
 
-			//htim2.Init.Period = 17740;
 			htim3.Init.Period = 17740;
 			break;
 		case 10://10
-			//htim2.Init.Prescaler = 29;
 			htim3.Init.Prescaler = 29;
 
-			//htim2.Init.Period = 17740;
 			htim3.Init.Period = 17740;
 			break;
 		case 50://50
-			//htim2.Init.Prescaler = 5;
 			htim3.Init.Prescaler = 5;
 
-			//htim2.Init.Period = 17740;
 			htim3.Init.Period = 17740;
 			break;
 		case 100://100
-			//htim2.Init.Prescaler = 2;
 			htim3.Init.Prescaler = 2;
 
-			//htim2.Init.Period = 17740;
 			htim3.Init.Period = 17740;
 			break;
 		case 200://200
-			//htim2.Init.Prescaler = 2;
 			htim3.Init.Prescaler = 2;
 
-			//htim2.Init.Period = 8870;
 			htim3.Init.Period = 8870;
 			break;
 		case 500: //500
-			//htim2.Init.Prescaler = 4;
 			htim3.Init.Prescaler = 4;
 
-			//htim2.Init.Period = 2129;
 			htim3.Init.Period = 2129;
 			break;
-		case 700://
-			//htim2.Init.Prescaler = 1;
+		case 700://700
 			htim3.Init.Prescaler = 3;
 
-			//htim2.Init.Period = 121428;
 			htim3.Init.Period = 60819;
 			break;
 		case 1000://1000
-			//htim2.Init.Prescaler = 2;
 			htim3.Init.Prescaler = 2;
 
-			//htim2.Init.Period = 1774;
 			htim3.Init.Period = 1774;
 			break;
 		case 10000://10000
-			//htim2.Init.Prescaler = 2;
 			htim3.Init.Prescaler = 2;
 
-			//htim2.Init.Period = 177;
 			htim3.Init.Period = 177;
 			break;
 		case 50000://50000
-			//htim2.Init.Prescaler = 0;
 			htim3.Init.Prescaler = 0;
 
-			//htim2.Init.Period = 105;
 			htim3.Init.Period = 105;
 			break;
 		case 100000://100000
-			//htim2.Init.Prescaler = 0;
 			htim3.Init.Prescaler = 0;
 
-			//htim2.Init.Period = 52;
 			htim3.Init.Period = 52;
 			break;
 		case 200000://200000
-			//htim2.Init.Prescaler = 0;
 			htim3.Init.Prescaler = 0;
 
-			//htim2.Init.Period = 25;
 			htim3.Init.Period = 25;
 			break;
 		case 500000://500000
-			//htim2.Init.Prescaler = 0;
 			htim3.Init.Prescaler = 0;
 
-			//htim2.Init.Period = 4;
 			htim3.Init.Period = 4;
 			break;
 		default:
-			//htim2.Init.Prescaler = 0;
 			htim3.Init.Prescaler = 0;
 
-			//htim2.Init.Period = 4;
 			htim3.Init.Period = 4;
 			break;
 
